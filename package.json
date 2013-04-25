@@ -1,13 +1,13 @@
-{ "name": "test-helpers"
+{ "name": "http-test-helper"
 , "version": "0.1.0"
-, "description": "A collection of helpers that I usually need when doing Node/REST API tests."
+, "description": "A helper for wrapping calls to HTTP APIs during Node/REST API tests."
 , "main": "index.js"
 , "scripts":
   { "test": "mocha"
   }
 , "repository":
   { "type": "git"
-  , "url": "git://github.com/fizker/js-test-helpers.git"
+  , "url": "git://github.com/fizker/js-http-test-helper.git"
   }
 , "dependencies":
   { "q": "~0.9.3"
@@ -24,6 +24,7 @@
 , "keywords":
   [ "mocha"
   , "chai"
+  , "http"
   , "rest"
   , "test"
   , "helper"
