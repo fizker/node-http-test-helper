@@ -22,6 +22,7 @@
   , "chai-as-promised": "~3.2.5"
   , "express": "~3.2.0"
   , "fzkes": "~0.7.1"
+  , "finc-chai-helpers": "~0.1.0"
   }
 , "keywords":
   [ "mocha"

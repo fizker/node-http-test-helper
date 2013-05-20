@@ -1,0 +1,26 @@
+describe('unit/get.js', function() {
+	var helper
+	var server
+	beforeEach(function() {
+		helper = new HttpHelper({ url: 'http://a.bc:123' })
+		server = nock('http://a.bc:123')
+	})
+	describe('When getting `/def` returns 2xx and a json body', function() {
+		var promise
+		beforeEach(function() {
+			server.get('/def').reply(200, '{ "abc": 123 }', { 'content-type': 'application/json' })
+			promise = helper.get('/def')
+		})
+		it('should resolve the promise', function() {
+			return promise.should.become.fulfilled
+		})
+		it('should have the response object', function() {
+			return promise.should.eventually
+				.approximate([ { statusCode: 200, body: '{ "abc": 123 }' } ])
+		})
+		it('should pass a transformed body as well', function() {
+			return promise.should.eventually
+				.approximate([ {}, { abc: 123 } ])
+		})
+	})
+})
