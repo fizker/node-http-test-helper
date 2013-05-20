@@ -17,6 +17,7 @@ describe('unit/request.js', function() {
 	})
 	describe('When calling', function() {
 		var helper
+		var promise
 		beforeEach(function() {
 			helper = new HttpHelper({ url: 'http://a.bc:123' })
 			fzkes.fake(request, 'get')
@@ -33,66 +34,90 @@ describe('unit/request.js', function() {
 		})
 		describe('`get()`', function() {
 			beforeEach(function() {
-				helper.get()
+				promise = helper.get()
 			})
 			it('should call `request.get` with the default url', function() {
 				expect(request.get).to.have.been.calledWith('http://a.bc:123')
 			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
+			})
 		})
 		describe('`post()`', function() {
 			beforeEach(function() {
-				helper.post()
+				promise = helper.post()
 			})
 			it('should call `request.post` with the default url', function() {
 				expect(request.post).to.have.been.calledWith('http://a.bc:123')
 			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
+			})
 		})
 		describe('`trace()`', function() {
 			beforeEach(function() {
-				helper.trace()
+				promise = helper.trace()
 			})
 			it('should call `request.trace` with the default url', function() {
 				expect(request.trace).to.have.been.calledWith('http://a.bc:123')
 			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
+			})
 		})
 		describe('`head()`', function() {
 			beforeEach(function() {
-				helper.head()
+				promise = helper.head()
 			})
 			it('should call `request.head` with the default url', function() {
 				expect(request.head).to.have.been.calledWith('http://a.bc:123')
 			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
+			})
 		})
 		describe('`options()`', function() {
 			beforeEach(function() {
-				helper.options()
+				promise = helper.options()
 			})
 			it('should call `request.options` with the default url', function() {
 				expect(request.options).to.have.been.calledWith('http://a.bc:123')
 			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
+			})
 		})
 		describe('`del()`', function() {
 			beforeEach(function() {
-				helper.del()
+				promise = helper.del()
 			})
 			it('should call `request.del` with the default url', function() {
 				expect(request.del).to.have.been.calledWith('http://a.bc:123')
 			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
+			})
 		})
 		describe('`put()`', function() {
 			beforeEach(function() {
-				helper.put()
+				promise = helper.put()
 			})
 			it('should call `request.put` with the default url', function() {
 				expect(request.put).to.have.been.calledWith('http://a.bc:123')
 			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
+			})
 		})
 		describe('`connect()`', function() {
 			beforeEach(function() {
-				helper.connect()
+				promise = helper.connect()
 			})
 			it('should call `request.connect` with the default url', function() {
 				expect(request.connect).to.have.been.calledWith('http://a.bc:123')
+			})
+			it('should return a promise', function() {
+				expect(promise).to.have.property('then').and.be.a('function')
 			})
 		})
 	})
