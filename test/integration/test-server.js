@@ -2,7 +2,7 @@
 describe('integration/test-server.js', function() {
 	var Q = require('q')
 	var request = Q.nfbind(require('request'))
-	helpers.setup(this)
+	helpers.setup.integration(this)
 	describe('When registering a get', function() {
 		beforeEach(function() {
 			helpers.server.get('/abc', function(req, res) {

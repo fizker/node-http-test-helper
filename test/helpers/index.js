@@ -1,5 +1,7 @@
 module.exports =
-{ setup: setup
+{ setup:
+  { integration: setupIntegration
+  }
 , PORT: 8082
 }
 
@@ -7,7 +9,7 @@ var http = require('http')
 var express = require('express')
 var Q = require('q')
 
-function setup(mocha) {
+function setupIntegration(mocha) {
 	mocha.beforeEach(function() {
 		module.exports.server = new Server()
 		return module.exports.server.listen(8082)
