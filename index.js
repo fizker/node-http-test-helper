@@ -9,7 +9,7 @@ function Helper(defaults) {
 
 Helper.prototype =
 { get: function get(url) { return this.request('get', url) }
-, post: function post() { return this.request('post') }
+, post: function post(url, options) { return this.request('post', url, options) }
 , put: function() { return this.request('put') }
 , del: function() { return this.request('del') }
 , head: function() { return this.request('head') }
@@ -19,9 +19,9 @@ Helper.prototype =
 , request: req
 }
 
-function req(method, url) {
+function req(method, url, options) {
 	var d = Q.defer()
-	request[method](this._defaults.url + (url || ''), d.makeNodeResolver())
+	request[method](this._defaults.url + (url || ''), options, d.makeNodeResolver())
 	return d.promise.then(function(args) {
 		var response = args[0]
 		var body = args[1]

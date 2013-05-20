@@ -1,6 +1,7 @@
 module.exports =
 { setup:
   { integration: setupIntegration
+  , unit: setupUnit
   }
 , PORT: 8082
 }
@@ -8,6 +9,18 @@ module.exports =
 var http = require('http')
 var express = require('express')
 var Q = require('q')
+
+function setupUnit(mocha) {
+	mocha.afterEach(function() {
+		nock.cleanAll()
+	})
+	mocha.beforeAll(function() {
+		nock.activate()
+	})
+	mocha.afterAll(function() {
+		nock.restore()
+	})
+}
 
 function setupIntegration(mocha) {
 	mocha.beforeEach(function() {

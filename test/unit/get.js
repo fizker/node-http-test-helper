@@ -1,6 +1,7 @@
 describe('unit/get.js', function() {
 	var helper
 	var server
+	helpers.setup.unit(this)
 	beforeEach(function() {
 		helper = new HttpHelper({ url: 'http://a.bc:123' })
 		server = nock('http://a.bc:123')
