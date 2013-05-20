@@ -25,7 +25,9 @@ function req(method, url, options) {
 	return d.promise.then(function(args) {
 		var response = args[0]
 		var body = args[1]
-		if(response.headers['content-type'] == 'application/json') {
+		if( response.headers['content-type'] == 'application/json'
+		 && typeof(body) == 'string'
+		) {
 			body = JSON.parse(body)
 		}
 		return [ response, body ]
