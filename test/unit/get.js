@@ -6,6 +6,23 @@ describe('unit/get.js', function() {
 		helper = new HttpHelper({ url: 'http://a.bc:123' })
 		server = nock('http://a.bc:123')
 	})
+	describe('When getting', function() {
+		var serverScope
+		describe('and setting `accept` option', function() {
+			beforeEach(function() {
+				serverScope = server
+					.matchHeader('accept', 'text/plain')
+					.get('/')
+					.reply(204)
+			})
+			it('should send that as the accept-header', function() {
+				return helper.get('/', { accept: 'text/plain' })
+					.then(function() {
+						expect(serverScope.isDone()).to.be.true
+					})
+			})
+		})
+	})
 	describe('When getting `/def` returns 2xx and a json body', function() {
 		var promise
 		beforeEach(function() {

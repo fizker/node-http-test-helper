@@ -8,9 +8,9 @@ function Helper(defaults) {
 }
 
 Helper.prototype =
-{ get: function get(url) { return this.request('get', url) }
+{ get: function get(url, options) { return this.request('get', url, options) }
 , post: function post(url, options) { return this.request('post', url, options) }
-, put: function() { return this.request('put') }
+, put: function(url, options) { return this.request('put', url, options) }
 , del: function() { return this.request('del') }
 , head: function() { return this.request('head') }
 , options: function() { return this.request('options') }
@@ -20,6 +20,19 @@ Helper.prototype =
 }
 
 function req(method, url, options) {
+	if(options && options.accept) {
+		options.headers = { 'accept': options.accept }
+		delete options.accept
+	}
+	if(options && options.body) {
+		if(typeof(options.body) == 'string') {
+			options.headers = { 'content-type': 'text/plain' }
+		} else {
+			options.json = options.body
+			delete options.body
+		}
+	}
+
 	var d = Q.defer()
 	request[method](this._defaults.url + (url || ''), options, d.makeNodeResolver())
 	return d.promise.then(function(args) {
