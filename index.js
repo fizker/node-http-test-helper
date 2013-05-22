@@ -2,6 +2,7 @@ module.exports = Helper
 
 var request = require('request')
 var Q = require('q')
+var merge = require('fmerge')
 
 function Helper(defaults) {
 	this._defaults = defaults
@@ -20,6 +21,9 @@ Helper.prototype =
 }
 
 function req(method, url, options) {
+	options = merge(this._defaults, options)
+	options.url = this._defaults.url + (url || '')
+
 	if(options && options.accept) {
 		options.headers = { 'accept': options.accept }
 		delete options.accept
@@ -34,7 +38,7 @@ function req(method, url, options) {
 	}
 
 	var d = Q.defer()
-	request[method](this._defaults.url + (url || ''), options, d.makeNodeResolver())
+	request[method](options, d.makeNodeResolver())
 	return d.promise.then(function(args) {
 		var response = args[0]
 		var body = args[1]

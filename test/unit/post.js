@@ -6,12 +6,11 @@ describe('unit/post.js', function() {
 		helper = new HttpHelper({ url: 'http://a.bc:123' })
 		server = nock('http://a.bc:123')
 	})
-	describe('When posting `/def`', function() {
+	describe('When posting to `/def`', function() {
 		var promise
 		describe('with `json` set on options', function() {
-			var serverScope
 			beforeEach(function() {
-				serverScope = server
+				server
 					.matchHeader('content-type', 'application/json')
 					.post('/def', { abc: 123 })
 					.reply(204)
@@ -19,14 +18,13 @@ describe('unit/post.js', function() {
 			it('should pass body as `content-type: json`', function() {
 				promise = helper.post('/def', { json: { abc: 123 } })
 				return promise.then(function() {
-					expect(serverScope.isDone()).to.be.true
+					expect(server.isDone()).to.be.true
 				})
 			})
 		})
 		describe('with `form` set on options', function() {
-			var serverScope
 			beforeEach(function() {
-				serverScope = server
+				server
 					// We don't care about charset of the content-type (request
 					// puts this on), so we use a more relaxed regex
 					.matchHeader('content-type',
@@ -37,7 +35,7 @@ describe('unit/post.js', function() {
 			it('should pass body as content-type: form-urlencoded', function() {
 				promise = helper.post('/def', { form: { abc: 123 } })
 				return promise.then(function() {
-					expect(serverScope.isDone()).to.be.true
+					expect(server.isDone()).to.be.true
 				})
 			})
 		})
