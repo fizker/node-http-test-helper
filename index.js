@@ -40,12 +40,12 @@ function req(method, url, options) {
 	options.url = this._defaults.url + (url || '')
 
 	if(options && options.accept) {
-		options.headers = { 'accept': options.accept }
+		options = merge(options, { headers: { 'accept': options.accept } })
 		delete options.accept
 	}
 	if(options && options.body) {
 		if(typeof(options.body) == 'string') {
-			options.headers = { 'content-type': 'text/plain' }
+			options = merge(options, { headers: { 'content-type': 'text/plain' } })
 		} else {
 			options.json = options.body
 			delete options.body

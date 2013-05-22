@@ -8,6 +8,62 @@ describe('unit/post.js', function() {
 	})
 	describe('When posting to `/def`', function() {
 		var promise
+		describe('with a default header added', function() {
+			beforeEach(function() {
+				helper.addDefaults({ headers: { 'x-header': 'abc' } })
+			})
+			it('should send that header', function() {
+				server
+					.matchHeader('x-header', 'abc')
+					.post('/def')
+					.reply(204)
+				return helper.post('/def')
+					.then(function() {
+						expect(server.isDone()).to.be.true
+					})
+			})
+			describe('and with `body` option set', function() {
+				beforeEach(function() {
+					server
+						.matchHeader('x-header', 'abc')
+						.matchHeader('content-type', 'text/plain')
+						.post('/def', 'abc')
+						.reply(204)
+				})
+				it('should set all headers correctly', function() {
+					return helper.post('/def', { body: 'abc' })
+						.then(function() {
+							expect(server.isDone()).to.be.true
+						})
+				})
+				describe('as well as content-type', function() {
+					it('should set all headers correctly', function() {
+						return helper.post('/def',
+							{ body: 'abc'
+							, headers: { 'content-type': 'abc/def' }
+							})
+							.then(function() {
+								expect(server.isDone()).to.be.true
+							})
+					})
+				})
+			})
+			describe('and with `accept` option set', function() {
+				beforeEach(function() {
+					server
+						.matchHeader('x-header', 'abc')
+						.matchHeader('accept', 'abc/def')
+						.post('/def')
+						.reply(204)
+				})
+				it('should set all headers correctly', function() {
+					return helper.post('/def', { accept: 'abc/def' })
+						.then(function() {
+							expect(server.isDone()).to.be.true
+						})
+				})
+			})
+		})
 		describe('with `json` set on options', function() {
 			beforeEach(function() {
 				server
