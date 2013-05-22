@@ -18,6 +18,21 @@ Helper.prototype =
 , trace: function() { return this.request('trace') }
 , connect: function() { return this.request('connect') }
 , request: req
+, defaults: defaults
+, addDefaults: addDefaults
+}
+
+function defaults(opts) {
+	if(opts) {
+		this._defaults = opts
+		return this
+	}
+	return this._defaults
+}
+
+function addDefaults(opts) {
+	this._defaults = merge(this._defaults, opts)
+	return this
 }
 
 function req(method, url, options) {
