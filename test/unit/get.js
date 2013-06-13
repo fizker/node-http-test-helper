@@ -40,5 +40,16 @@ describe('unit/get.js', function() {
 			return promise.should.eventually
 				.approximate([ {}, { abc: 123 } ])
 		})
+		describe('with `charset` on the content-type', function() {
+			beforeEach(function() {
+				server.get('/ghi')
+					.reply(200, '{ "abc": 123 }', { 'content-type': 'application/json; charset=utf-8' })
+				promise = helper.get('/ghi')
+			})
+			it('should still pass a transformed body', function() {
+				return promise.should.eventually
+					.approximate([ {}, { abc: 123 } ])
+			})
+		})
 	})
 })

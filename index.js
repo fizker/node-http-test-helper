@@ -4,6 +4,10 @@ var request = require('request')
 var Q = require('q')
 var merge = require('fmerge')
 
+var contentTypes =
+    { json: /^application\/json;?/i
+    }
+
 function Helper(defaults) {
 	this._defaults = defaults
 }
@@ -57,7 +61,7 @@ function req(method, url, options) {
 	return d.promise.then(function(args) {
 		var response = args[0]
 		var body = args[1]
-		if( response.headers['content-type'] == 'application/json'
+		if( contentTypes.json.test(response.headers['content-type'])
 		 && typeof(body) == 'string'
 		) {
 			body = JSON.parse(body)
