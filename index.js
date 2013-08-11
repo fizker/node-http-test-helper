@@ -69,14 +69,14 @@ function req(method, url, options, callback) {
 
 	var d = Q.defer()
 	request[method](options, d.makeNodeResolver())
-	return d.promise.then(function(args) {
-		var response = args[0]
-		var body = args[1]
+	return d.promise.spread(function(response, body) {
 		if( contentTypes.json.test(response.headers['content-type'])
 		 && typeof(body) == 'string'
 		) {
 			body = JSON.parse(body)
 		}
-		return [ response, body ]
+		response.originalBody = response.body
+		response.body = body
+		return response
 	}).nodeify(callback)
 }

@@ -141,11 +141,11 @@ describe('unit/post.js', function() {
 			})
 			it('should have the response object', function() {
 				return promise.should.eventually
-					.approximate([ { statusCode: 200 } ])
+					.have.property('statusCode', 200)
 			})
 			it('should parse the body appropriately', function() {
-				return promise.should.eventually
-					.approximate([ {}, { abc: 123 } ])
+				return promise.get('body').should.eventually
+					.approximate({ abc: 123 })
 			})
 		})
 	})

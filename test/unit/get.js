@@ -66,11 +66,11 @@ describe('unit/get.js', function() {
 		})
 		it('should have the response object', function() {
 			return promise.should.eventually
-				.approximate([ { statusCode: 200, body: '{ "abc": 123 }' } ])
+				.approximate({ statusCode: 200, originalBody: '{ "abc": 123 }' })
 		})
 		it('should pass a transformed body as well', function() {
 			return promise.should.eventually
-				.approximate([ {}, { abc: 123 } ])
+				.approximate({ body: { abc: 123 } })
 		})
 		describe('with `charset` on the content-type', function() {
 			beforeEach(function() {
@@ -80,7 +80,7 @@ describe('unit/get.js', function() {
 			})
 			it('should still pass a transformed body', function() {
 				return promise.should.eventually
-					.approximate([ {}, { abc: 123 } ])
+					.approximate({ body: { abc: 123 } })
 			})
 		})
 	})
