@@ -8,7 +8,7 @@ global.expect = chai.expect
 chai.use(require('chai-as-promised'))
 
 global.fzkes = require('fzkes')
-chai.use(fzkes.chai)
+chai.use(fzkes)
 require('finc-chai-helpers').addMethods(chai)
 
 global.nock = require('nock')
