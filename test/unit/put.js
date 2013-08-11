@@ -6,6 +6,41 @@ describe('unit/put.js', function() {
 		helper = new HttpHelper({ url: 'http://a.bc:123' })
 		server = nock('http://a.bc:123')
 	})
+	describe('When getting', function() {
+		var serverScope
+		describe('with a callback', function() {
+			var callback
+			var returnValue
+			beforeEach(function() {
+				callback = fzkes.fake('callback')
+				serverScope = server
+					.put('/')
+					.reply(204)
+			})
+			describe('as the second parameter', function() {
+				beforeEach(function() {
+					returnValue = helper.put('/', callback)
+				})
+				it('should not return anything', function() {
+					expect(returnValue).to.be.undefined
+				})
+				it('should call the callback eventually', function(done) {
+					callback.calls(done)
+				})
+			})
+			describe('as the third parameter', function() {
+				beforeEach(function() {
+					returnValue = helper.put('/', {}, callback)
+				})
+				it('should not return anything', function() {
+					expect(returnValue).to.be.undefined
+				})
+				it('should call the callback eventually', function(done) {
+					callback.calls(done)
+				})
+			})
+		})
+	})
 	describe('When putting `/def`', function() {
 		var serverScope
 		describe('with `json` set on options', function() {

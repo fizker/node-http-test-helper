@@ -22,6 +22,38 @@ describe('unit/get.js', function() {
 					})
 			})
 		})
+		describe('with a callback', function() {
+			var callback
+			var returnValue
+			beforeEach(function() {
+				callback = fzkes.fake('callback')
+				serverScope = server
+					.get('/')
+					.reply(204)
+			})
+			describe('as the second parameter', function() {
+				beforeEach(function() {
+					returnValue = helper.get('/', callback)
+				})
+				it('should not return anything', function() {
+					expect(returnValue).to.be.undefined
+				})
+				it('should call the callback eventually', function(done) {
+					callback.calls(done)
+				})
+			})
+			describe('as the third parameter', function() {
+				beforeEach(function() {
+					returnValue = helper.get('/', {}, callback)
+				})
+				it('should not return anything', function() {
+					expect(returnValue).to.be.undefined
+				})
+				it('should call the callback eventually', function(done) {
+					callback.calls(done)
+				})
+			})
+		})
 	})
 	describe('When getting `/def` returns 2xx and a json body', function() {
 		var promise

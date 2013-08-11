@@ -13,9 +13,9 @@ function Helper(defaults) {
 }
 
 Helper.prototype =
-{ get: function get(url, options) { return this.request('get', url, options) }
-, post: function post(url, options) { return this.request('post', url, options) }
-, put: function(url, options) { return this.request('put', url, options) }
+{ get: function get(url, options, callback) { return this.request('get', url, options, callback) }
+, post: function post(url, options, callback) { return this.request('post', url, options, callback) }
+, put: function(url, options, callback) { return this.request('put', url, options, callback) }
 , del: function() { return this.request('del') }
 , head: function() { return this.request('head') }
 , options: function() { return this.request('options') }
@@ -46,7 +46,11 @@ function resolveShorthandDefaults(defaults) {
 	return defaults
 }
 
-function req(method, url, options) {
+function req(method, url, options, callback) {
+	if(typeof(options) == 'function') {
+		callback = options
+		options = null
+	}
 	options = merge(this._defaults, options)
 	options.url = this._defaults.url + (url || '')
 
@@ -74,5 +78,5 @@ function req(method, url, options) {
 			body = JSON.parse(body)
 		}
 		return [ response, body ]
-	})
+	}).nodeify(callback)
 }
