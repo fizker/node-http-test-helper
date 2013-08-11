@@ -9,7 +9,7 @@ var contentTypes =
     }
 
 function Helper(defaults) {
-	this._defaults = defaults
+	this.defaults(defaults)
 }
 
 Helper.prototype =
@@ -28,15 +28,22 @@ Helper.prototype =
 
 function defaults(opts) {
 	if(opts) {
-		this._defaults = opts
+		this._defaults = resolveShorthandDefaults(opts)
 		return this
 	}
 	return this._defaults
 }
 
 function addDefaults(opts) {
-	this._defaults = merge(this._defaults, opts)
+	this.defaults(merge(this._defaults, opts))
 	return this
+}
+
+function resolveShorthandDefaults(defaults) {
+	if(defaults.jar === true) {
+		defaults.jar = request.jar()
+	}
+	return defaults
 }
 
 function req(method, url, options) {
