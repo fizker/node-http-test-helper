@@ -9,6 +9,6 @@ Features
 
 Wrap request with a few convenience methods:
 
-- promises (...Q.nodeify())
+- It supports both promises and regular callbacks;
 - auto-setting basic url
 - automatically translating certain types from the server (at least application/json)
