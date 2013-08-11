@@ -1,5 +1,5 @@
 // These tests massage the test-server used to validate the actual code
-describe('integration/test-server.js', function() {
+xdescribe('integration/test-server.js', function() {
 	var Q = require('q')
 	var request = Q.nfbind(require('request'))
 	helpers.setup.integration(this)
