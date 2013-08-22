@@ -72,8 +72,13 @@ function req(method, url, options, callback) {
 	return d.promise.spread(function(response, body) {
 		if( contentTypes.json.test(response.headers['content-type'])
 		 && typeof(body) == 'string'
+		 && body.length
 		) {
-			body = JSON.parse(body)
+			try {
+				body = JSON.parse(body)
+			} catch(e) {
+				throw new Error('Invalid JSON: ' + body)
+			}
 		}
 		response.originalBody = response.body
 		response.body = body

@@ -55,6 +55,29 @@ describe('unit/get.js', function() {
 			})
 		})
 	})
+	describe('When getting `/def` returns 204 and an empty json body', function() {
+		beforeEach(function() {
+			server.get('/def').reply(204, '', { 'content-type': 'application/json' })
+		})
+		it('should not throw', function() {
+			return helper.get('/def')
+				.should.not.be.rejected
+		})
+	})
+	describe('When getting `/def` returns invalid JSON', function() {
+		var promise
+		beforeEach(function() {
+			server.get('/def').reply(200, 'abc', { 'content-type': 'application/json' })
+			promise = helper.get('/def')
+		})
+		it('should throw', function() {
+			return promise.should.be.rejected
+		})
+		it('should throw a good error message', function() {
+			return promise.fail(function(error) { return error })
+				.should.eventually.have.property('message', 'Invalid JSON: abc')
+		})
+	})
 	describe('When getting `/def` returns 2xx and a json body', function() {
 		var promise
 		beforeEach(function() {
@@ -62,7 +85,7 @@ describe('unit/get.js', function() {
 			promise = helper.get('/def')
 		})
 		it('should resolve the promise', function() {
-			return promise.should.become.fulfilled
+			return promise.should.be.fulfilled
 		})
 		it('should have the response object', function() {
 			return promise.should.eventually
