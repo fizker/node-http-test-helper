@@ -1,6 +1,35 @@
 describe('unit/defaults.js', function() {
 	var request = require('request')
 	var helper
+	describe('When calling `scope()`', function() {
+		var scope
+		beforeEach(function() {
+			helper = new HttpHelper({ a: 1, headers: { b: 2 } })
+		})
+		describe('with no parameters', function() {
+			beforeEach(function() {
+				scope = helper.scope()
+			})
+			it('should return a new helper', function() {
+				expect(scope).not.to.equal(helper)
+			})
+			it('should have the same defaults', function() {
+				expect(scope.defaults()).to.deep.equal(helper.defaults())
+			})
+		})
+		describe('with defaults', function() {
+			beforeEach(function() {
+				scope = helper.scope({ c: 3, headers: { d: 4 } })
+			})
+			it('should still have the old defaults', function() {
+				expect(scope.defaults()).to.approximate(helper.defaults())
+			})
+			it('should also have the new defaults', function() {
+				expect(scope.defaults())
+					.to.approximate({ c: 3, headers: { d: 4 } })
+			})
+		})
+	})
 	describe('When setting defaults while creating', function() {
 		beforeEach(function() {
 			helper = new HttpHelper({ a: 1, headers: { b: 2 } })

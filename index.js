@@ -24,6 +24,11 @@ Helper.prototype =
 , request: req
 , defaults: defaults
 , addDefaults: addDefaults
+, scope: scope
+}
+
+function scope(opts) {
+	return new Helper(this.defaults()).addDefaults(opts)
 }
 
 function defaults(opts) {
