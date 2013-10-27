@@ -16,7 +16,7 @@ Helper.prototype =
 { get: function get(url, options, callback) { return this.request('get', url, options, callback) }
 , post: function post(url, options, callback) { return this.request('post', url, options, callback) }
 , put: function(url, options, callback) { return this.request('put', url, options, callback) }
-, del: function() { return this.request('del') }
+, delete: function(url, options, callback) { return this.request('del', url, options, callback) }
 , head: function() { return this.request('head') }
 , options: function() { return this.request('options') }
 , trace: function() { return this.request('trace') }
@@ -26,6 +26,7 @@ Helper.prototype =
 , addDefaults: addDefaults
 , scope: scope
 }
+Helper.prototype.del = Helper.prototype.delete
 
 function scope(opts) {
 	return new Helper(this.defaults()).addDefaults(opts)

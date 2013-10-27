@@ -10,6 +10,7 @@ describe('unit/request.js', function() {
 			expect(helper).to.have.property('post').and.be.a('function')
 			expect(helper).to.have.property('put').and.be.a('function')
 			expect(helper).to.have.property('del').and.be.a('function')
+			expect(helper).to.have.property('delete').and.be.a('function')
 			expect(helper).to.have.property('options').and.be.a('function')
 			expect(helper).to.have.property('trace').and.be.a('function')
 			expect(helper).to.have.property('connect').and.be.a('function')
