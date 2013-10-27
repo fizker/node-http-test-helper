@@ -1,5 +1,5 @@
 { "name": "http-test-helper"
-, "version": "0.2.0"
+, "version": "0.3.0"
 , "description": "A helper for wrapping calls to HTTP APIs during Node/REST API tests."
 , "main": "index.js"
 , "scripts":
