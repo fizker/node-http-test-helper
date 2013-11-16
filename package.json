@@ -1,5 +1,5 @@
 { "name": "http-test-helper"
-, "version": "0.3.0"
+, "version": "0.3.1"
 , "description": "A helper for wrapping calls to HTTP APIs during Node/REST API tests."
 , "main": "index.js"
 , "scripts":
@@ -16,14 +16,14 @@
   , "request": "~2.27.0"
   }
 , "devDependencies":
-  { "mocha": "~1.13.0"
+  { "mocha": "~1.14.0"
   , "chai": "~1.8.1"
-  , "mocha-as-promised": "~1.4.0"
-  , "chai-as-promised": "~3.3.1"
+  , "mocha-as-promised": "~1.4.1"
+  , "chai-as-promised": "~4.1.0"
   , "express": "~3.3.5"
   , "fzkes": "~0.11.1"
   , "finc-chai-helpers": "~0.1.0"
-  , "nock": "~0.22.1"
+  , "nock": "~0.23.0"
   }
 , "keywords":
   [ "mocha"
