@@ -16,7 +16,7 @@ Helper.prototype =
 { get: function get(url, options, callback) { return this.request('get', url, options, callback) }
 , post: function post(url, options, callback) { return this.request('post', url, options, callback) }
 , put: function(url, options, callback) { return this.request('put', url, options, callback) }
-, delete: function(url, options, callback) { return this.request('del', url, options, callback) }
+, delete: function(url, options, callback) { return this.request('delete', url, options, callback) }
 , head: function() { return this.request('head') }
 , options: function() { return this.request('options') }
 , trace: function() { return this.request('trace') }
@@ -58,6 +58,7 @@ function req(method, url, options, callback) {
 		options = null
 	}
 	options = merge(this._defaults, options)
+	options.method = method.toUpperCase()
 	options.url = this._defaults.url + (url || '')
 
 	if(options && options.accept) {
@@ -74,7 +75,7 @@ function req(method, url, options, callback) {
 	}
 
 	var d = Q.defer()
-	request[method](options, d.makeNodeResolver())
+	request(options, d.makeNodeResolver())
 	return d.promise.spread(function(response, body) {
 		if( contentTypes.json.test(response.headers['content-type'])
 		 && typeof(body) == 'string'

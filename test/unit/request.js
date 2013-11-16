@@ -38,7 +38,8 @@ describe('unit/request.js', function() {
 				promise = helper.get()
 			})
 			it('should call `request.get` with the default url', function() {
-				expect(request.get).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.get).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'GET', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
@@ -49,7 +50,8 @@ describe('unit/request.js', function() {
 				promise = helper.post()
 			})
 			it('should call `request.post` with the default url', function() {
-				expect(request.post).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.post).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'POST', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
@@ -60,7 +62,8 @@ describe('unit/request.js', function() {
 				promise = helper.trace()
 			})
 			it('should call `request.trace` with the default url', function() {
-				expect(request.trace).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.trace).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'TRACE', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
@@ -71,7 +74,8 @@ describe('unit/request.js', function() {
 				promise = helper.head()
 			})
 			it('should call `request.head` with the default url', function() {
-				expect(request.head).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.head).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'HEAD', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
@@ -82,7 +86,8 @@ describe('unit/request.js', function() {
 				promise = helper.options()
 			})
 			it('should call `request.options` with the default url', function() {
-				expect(request.options).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.options).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'OPTIONS', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
@@ -93,7 +98,8 @@ describe('unit/request.js', function() {
 				promise = helper.del()
 			})
 			it('should call `request.del` with the default url', function() {
-				expect(request.del).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.del).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'DELETE', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
@@ -104,7 +110,8 @@ describe('unit/request.js', function() {
 				promise = helper.put()
 			})
 			it('should call `request.put` with the default url', function() {
-				expect(request.put).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.put).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'PUT', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
@@ -115,7 +122,8 @@ describe('unit/request.js', function() {
 				promise = helper.connect()
 			})
 			it('should call `request.connect` with the default url', function() {
-				expect(request.connect).to.have.been.calledWith({ url: 'http://a.bc:123' })
+				expect(request.connect).not.to.have.been.called
+				expect(request).to.have.been.calledWith({ method: 'CONNECT', url: 'http://a.bc:123' })
 			})
 			it('should return a promise', function() {
 				expect(promise).to.have.property('then').and.be.a('function')
