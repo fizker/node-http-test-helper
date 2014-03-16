@@ -1,6 +1,7 @@
 describe('unit/defaults.js', function() {
 	var request = require('request')
 	var helper
+
 	describe('When calling `scope()`', function() {
 		var scope
 		beforeEach(function() {
@@ -30,6 +31,31 @@ describe('unit/defaults.js', function() {
 			})
 		})
 	})
+
+	describe('When calling `addDefaults()` with a null value', function() {
+		beforeEach(function() {
+			helper = new HttpHelper({ a: 1, headers: { b: 2, c: 3 } })
+		})
+
+		describe('for a 1st level value', function() {
+			beforeEach(function() {
+				helper.addDefaults({ headers: null })
+			})
+			it('should remove that key-path', function() {
+				expect(helper.defaults()).to.deep.equal({ a: 1 })
+			})
+		})
+
+		describe('for a nested value', function() {
+			beforeEach(function() {
+				helper.addDefaults({ headers: { b: null } })
+			})
+			it('should remove that key-path', function() {
+				expect(helper.defaults()).to.deep.equal({ a: 1, headers: { c: 3 } })
+			})
+		})
+	})
+
 	describe('When setting defaults while creating', function() {
 		beforeEach(function() {
 			helper = new HttpHelper({ a: 1, headers: { b: 2 } })
@@ -47,6 +73,7 @@ describe('unit/defaults.js', function() {
 			})
 		})
 	})
+
 	describe('When setting `jar` to true', function() {
 		var fakeJar
 		beforeEach(function() {

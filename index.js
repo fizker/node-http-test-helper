@@ -49,7 +49,25 @@ function resolveShorthandDefaults(defaults) {
 	if(defaults.jar === true) {
 		defaults.jar = request.jar()
 	}
+
+	// Removing null-values
+	stripNull(defaults)
+
 	return defaults
+}
+
+function stripNull(obj) {
+	Object.keys(obj).forEach(function(key) {
+		var value = obj[key]
+		if(value == null) {
+			delete obj[key]
+			return
+		}
+
+		if(typeof(value) == 'object') {
+			stripNull(value)
+		}
+	})
 }
 
 function req(method, url, options, callback) {
