@@ -1,5 +1,3 @@
-require('mocha-as-promised')()
-
 global.chai = require('chai')
 chai.should()
 global.expect = chai.expect

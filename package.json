@@ -10,18 +10,17 @@
   , "url": "git://github.com/fizker/node-http-test-helper.git"
   }
 , "dependencies":
-  { "q": "~0.9.7"
+  { "q": "1.0.1 - 1.x"
   , "btoa": "~1.1.1"
-  , "fmerge": "~1.0.1"
-  , "request": "~2.27.0"
+  , "fmerge": "1.1.0 - 1.x"
+  , "request": "~2.34.0"
   }
 , "devDependencies":
-  { "mocha": "~1.14.0"
-  , "chai": "~1.8.1"
-  , "mocha-as-promised": "~1.4.1"
-  , "chai-as-promised": "~4.1.0"
+  { "mocha": "1.18.0 - 1.x"
+  , "chai": "1.9.0 - 1.x"
+  , "chai-as-promised": "~4.1.1"
   , "express": "~3.3.5"
-  , "fzkes": "~0.11.1"
+  , "fzkes": "~0.13.0"
   , "finc-chai-helpers": "~0.1.0"
   , "nock": "~0.23.0"
   }
