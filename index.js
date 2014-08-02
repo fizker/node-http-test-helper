@@ -93,7 +93,7 @@ function req(method, url, options, callback) {
 	}
 
 	var d = Q.defer()
-	request(options, d.makeNodeResolver())
+	var rawReturnValue = request(options, d.makeNodeResolver())
 	return d.promise.spread(function(response, body) {
 		if( contentTypes.json.test(response.headers['content-type'])
 		 && typeof(body) == 'string'
@@ -108,5 +108,5 @@ function req(method, url, options, callback) {
 		response.originalBody = response.body
 		response.body = body
 		return response
-	}).nodeify(callback)
+	}).nodeify(callback) || rawReturnValue
 }
