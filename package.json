@@ -10,10 +10,10 @@
   , "url": "git://github.com/fizker/node-http-test-helper.git"
   }
 , "dependencies":
-  { "q": "1.0.1 - 1.x"
-  , "btoa": "~1.1.1"
-  , "fmerge": "1.1.0 - 1.x"
-  , "request": "~2.34.0"
+  { "q": "^1.0.1"
+  , "btoa": "^1.1.2"
+  , "fmerge": "^1.1.1"
+  , "request": "^2.39.0"
   }
 , "devDependencies":
   { "mocha": "1.18.0 - 1.x"
