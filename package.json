@@ -16,12 +16,12 @@
   , "request": "^2.39.0"
   }
 , "devDependencies":
-  { "mocha": "1.18.0 - 1.x"
-  , "chai": "1.9.0 - 1.x"
-  , "chai-as-promised": "~4.1.1"
+  { "mocha": "^1.21.3"
+  , "chai": "^1.9.1"
+  , "chai-as-promised": "^4.1.1"
   , "express": "~3.3.5"
-  , "fzkes": "~0.13.0"
-  , "finc-chai-helpers": "~0.1.0"
+  , "fzkes": "^0.14.0"
+  , "finc-chai-helpers": "^0.1.0"
   , "nock": "~0.23.0"
   }
 , "keywords":
