@@ -17,10 +17,10 @@ Helper.prototype =
 , post: function post(url, options, callback) { return this.request('post', url, options, callback) }
 , put: function(url, options, callback) { return this.request('put', url, options, callback) }
 , delete: function(url, options, callback) { return this.request('delete', url, options, callback) }
-, head: function() { return this.request('head') }
-, options: function() { return this.request('options') }
-, trace: function() { return this.request('trace') }
-, connect: function() { return this.request('connect') }
+, head: function(url, options, callback) { return this.request('head', url, options, callback) }
+, options: function(url, options, callback) { return this.request('options', url, options, callback) }
+, trace: function(url, options, callback) { return this.request('trace', url, options, callback) }
+, connect: function(url, options, callback) { return this.request('connect', url, options, callback) }
 , request: req
 , defaults: defaults
 , addDefaults: addDefaults
